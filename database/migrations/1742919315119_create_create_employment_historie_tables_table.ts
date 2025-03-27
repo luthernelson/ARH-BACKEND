@@ -31,7 +31,7 @@ export default class EmploymentHistories extends BaseSchema {
       table.dateTime('probation_end_date').nullable()
       table.dateTime('end_date').nullable()
 
-      /*       table
+      /*table
         .integer('position_id')
         .unsigned()
         .notNullable()
