@@ -95,96 +95,132 @@ router.group(() => {
 //Worlocation
 router
   .group(() => {
-    router.get('/users', usersController.list.bind(usersController))
-    router.get('/users/:id', usersController.show.bind(usersController))
-    router.post('/users', usersController.store.bind(usersController))
-    router.put('/users/:id', usersController.update.bind(usersController))
-    router.delete('/users/:id', usersController.destroy.bind(usersController))
+    router.get('/worklocation', workLocationController.list.bind(workLocationController))
+    router.get('/worklocation/:id', workLocationController.show.bind(workLocationController))
+    router.post('/worklocation', workLocationController.store.bind(workLocationController))
+    router.put('/worklocation/:id', workLocationController.update.bind(workLocationController))
+    router.delete('/worklocation/:id', workLocationController.destroy.bind(workLocationController))
   })
   //.middleware('auth') // Protège toutes les routes
   .prefix('/api')
 
 //Lookup
 router.group(() => {
-  router.get('/employee', employeeController.list.bind(employeeController))
-  router.get('/employee/:id', employeeController.show.bind(employeeController))
-  router.post('/employee', employeeController.store.bind(employeeController))
-  router.put('/employee/:id', employeeController.update.bind(employeeController))
-  router.delete('/employee/:id', employeeController.destroy.bind(employeeController))
+  router.get('/lookup', lookupController.list.bind(lookupController))
+  router.get('/lookup/:id', lookupController.show.bind(lookupController))
+  router.post('/lookup', lookupController.store.bind(lookupController))
+  router.put('/lookup/:id', lookupController.update.bind(lookupController))
+  router.delete('/lookup/:id', lookupController.destroy.bind(lookupController))
 })
 
 //TemplateLetter
 router.group(() => {
-  router.get('/departemnt', departementController.list.bind(departementController))
-  router.get('/departemnt/:id', departementController.show.bind(departementController))
-  router.post('/departemnt', departementController.store.bind(departementController))
-  router.put('/departemnt/:id', departementController.update.bind(departementController))
-  router.delete('/departemnt/:id', departementController.destroy.bind(departementController))
+  router.get('/letter', letterTemplateController.list.bind(letterTemplateController))
+  router.get('/letter/:id', letterTemplateController.show.bind(letterTemplateController))
+  router.post('/letter', letterTemplateController.store.bind(letterTemplateController))
+  router.put('/letter/:id', letterTemplateController.update.bind(letterTemplateController))
+  router.delete('/letter/:id', letterTemplateController.destroy.bind(letterTemplateController))
 })
 
 //Interviews
 router.group(() => {
-  router.get('/candidat', candidatController.list.bind(candidatController))
-  router.get('/candidat/:id', candidatController.show.bind(candidatController))
-  router.post('/candidat', candidatController.store.bind(candidatController))
-  router.put('/candidat/:id', candidatController.update.bind(candidatController))
-  router.delete('/candidat/:id', candidatController.destroy.bind(candidatController))
+  router.get('/interviews', interviewController.list.bind(interviewController))
+  router.get('/interviews/:id', interviewController.show.bind(interviewController))
+  router.post('/interview', interviewController.store.bind(interviewController))
+  router.put('/interview/:id', interviewController.update.bind(interviewController))
+  router.delete('/interview/:id', interviewController.destroy.bind(interviewController))
 })
 //grantitems
 router
   .group(() => {
-    router.get('/users', usersController.list.bind(usersController))
-    router.get('/users/:id', usersController.show.bind(usersController))
-    router.post('/users', usersController.store.bind(usersController))
-    router.put('/users/:id', usersController.update.bind(usersController))
-    router.delete('/users/:id', usersController.destroy.bind(usersController))
+    router.get('/grantitems', grantItem.list.bind(grantItem))
+    router.get('/grantitems/:id', grantItem.show.bind(grantItem))
+    router.post('/grrantitems', grantItem.store.bind(grantItem))
+    router.put('/grantitems/:id', grantItem.update.bind(grantItem))
+    router.delete('/grantitems/:id', grantItem.destroy.bind(grantItem))
   })
   //.middleware('auth') // Protège toutes les routes
   .prefix('/api')
 
 //grant
 router.group(() => {
-  router.get('/employee', employeeController.list.bind(employeeController))
-  router.get('/employee/:id', employeeController.show.bind(employeeController))
-  router.post('/employee', employeeController.store.bind(employeeController))
-  router.put('/employee/:id', employeeController.update.bind(employeeController))
-  router.delete('/employee/:id', employeeController.destroy.bind(employeeController))
+  router.get('/grant', grantController.list.bind(grantController))
+  router.get('/grant/:id', grantController.show.bind(grantController))
+  router.post('/grant', grantController.store.bind(grantController))
+  router.put('/grant/:id', grantController.update.bind(grantController))
+  router.delete('/grant/:id', grantController.destroy.bind(grantController))
 })
 
 //employmentallocation
 router.group(() => {
-  router.get('/departemnt', departementController.list.bind(departementController))
-  router.get('/departemnt/:id', departementController.show.bind(departementController))
-  router.post('/departemnt', departementController.store.bind(departementController))
-  router.put('/departemnt/:id', departementController.update.bind(departementController))
-  router.delete('/departemnt/:id', departementController.destroy.bind(departementController))
+  router.get(
+    '/grantallocation',
+    employmentgrantallocationController.list.bind(employmentgrantallocationController)
+  )
+  router.get(
+    '/grantallocation/:id',
+    employmentgrantallocationController.show.bind(employmentgrantallocationController)
+  )
+  router.post(
+    '/grantallocation',
+    employmentgrantallocationController.store.bind(employmentgrantallocationController)
+  )
+  router.put(
+    '/grantallocation/:id',
+    employmentgrantallocationController.update.bind(employmentgrantallocationController)
+  )
+  router.delete(
+    '/grantallocation/:id',
+    employmentgrantallocationController.destroy.bind(employmentgrantallocationController)
+  )
 })
 
 //employment
 router.group(() => {
-  router.get('/candidat', candidatController.list.bind(candidatController))
-  router.get('/candidat/:id', candidatController.show.bind(candidatController))
-  router.post('/candidat', candidatController.store.bind(candidatController))
-  router.put('/candidat/:id', candidatController.update.bind(candidatController))
-  router.delete('/candidat/:id', candidatController.destroy.bind(candidatController))
+  router.get('/employment', employmentController.list.bind(employmentController))
+  router.get('/employment/:id', employmentController.show.bind(employmentController))
+  router.post('/employment', employmentController.store.bind(employmentController))
+  router.put('/employment/:id', employmentController.update.bind(employmentController))
+  router.delete('/employment/:id', employmentController.destroy.bind(employmentController))
 })
 //employmentTypes
 router
   .group(() => {
-    router.get('/users', usersController.list.bind(usersController))
-    router.get('/users/:id', usersController.show.bind(usersController))
-    router.post('/users', usersController.store.bind(usersController))
-    router.put('/users/:id', usersController.update.bind(usersController))
-    router.delete('/users/:id', usersController.destroy.bind(usersController))
+    router.get('/employmentTypes', employmentTypeController.list.bind(employmentTypeController))
+    router.get('/employmentTypes/:id', employmentTypeController.show.bind(employmentTypeController))
+    router.post('/employmentTypes', employmentTypeController.store.bind(employmentTypeController))
+    router.put(
+      '/employmentTypes/:id',
+      employmentTypeController.update.bind(employmentTypeController)
+    )
+    router.delete(
+      '/employmentTypes/:id',
+      employmentTypeController.destroy.bind(employmentTypeController)
+    )
   })
   //.middleware('auth') // Protège toutes les routes
   .prefix('/api')
 
 //employmentHistories
 router.group(() => {
-  router.get('/employee', employeeController.list.bind(employeeController))
-  router.get('/employee/:id', employeeController.show.bind(employeeController))
-  router.post('/employee', employeeController.store.bind(employeeController))
-  router.put('/employee/:id', employeeController.update.bind(employeeController))
-  router.delete('/employee/:id', employeeController.destroy.bind(employeeController))
+  router.get(
+    '/employmentHistories',
+    employmentHistoryController.list.bind(employmentHistoryController)
+  )
+  router.get(
+    '/employmentHistories/:id',
+    employmentHistoryController.show.bind(employmentHistoryController)
+  )
+  router.post(
+    '/employmentHistories',
+    employmentHistoryController.store.bind(employmentHistoryController)
+  )
+  router.put(
+    '/employmentHistories/:id',
+    employmentHistoryController.update.bind(employmentHistoryController)
+  )
+  router.delete(
+    '/employmentHistories/:id',
+    employmentHistoryController.destroy.bind(employmentHistoryController)
+  )
 })
