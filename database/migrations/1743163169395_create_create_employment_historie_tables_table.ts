@@ -1,11 +1,18 @@
 import { BaseSchema } from '@adonisjs/lucid/schema'
 
-export default class Employments extends BaseSchema {
-  protected tableName = 'employments'
+export default class EmploymentHistories extends BaseSchema {
+  protected tableName = 'employment_histories'
 
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
+      table
+        .integer('employment_id')
+        .unsigned()
+        .notNullable()
+        .references('id')
+        .inTable('employments')
+        .onDelete('CASCADE')
       table
         .integer('employee_id')
         .unsigned()
@@ -19,34 +26,34 @@ export default class Employments extends BaseSchema {
         .notNullable()
         .references('id')
         .inTable('employment_types')
-        .onDelete('CASCADE')
-      table.timestamp('start_date', { useTz: true }).notNullable()
-      table.timestamp('probation_end_date', { useTz: true }).nullable()
-      table.timestamp('end_date', { useTz: true }).nullable()
+        .onDelete('SET NULL')
+      table.dateTime('start_date').notNullable()
+      table.dateTime('probation_end_date').nullable()
+      table.dateTime('end_date').nullable()
 
-      /*       table
+      /*table
         .integer('position_id')
         .unsigned()
         .notNullable()
         .references('id')
         .inTable('positions')
-        .onDelete('CASCADE') */
+        .onDelete('SET NULL') */
       table
         .integer('department_id')
         .unsigned()
         .notNullable()
         .references('identifiant')
-        .inTable('departments')
-        .onDelete('CASCADE')
+        .inTable('departements')
+        .onDelete('SET NULL')
       table
         .integer('work_location_id')
         .unsigned()
         .notNullable()
         .references('id')
         .inTable('work_locations')
-        .onDelete('CASCADE')
-      table.integer('position_salary').notNullable()
-      table.integer('probation_salary').nullable()
+        .onDelete('SET NULL')
+      table.decimal('position_salary', 10, 2).notNullable()
+      table.decimal('probation_salary', 10, 2).nullable()
       table
         .integer('supervisor_id')
         .unsigned()
@@ -54,8 +61,8 @@ export default class Employments extends BaseSchema {
         .references('id')
         .inTable('employees')
         .onDelete('SET NULL')
-      table.integer('employee_tax').nullable()
-      table.integer('fte').nullable()
+      table.decimal('employee_tax', 10, 2).nullable()
+      table.decimal('fte', 5, 2).nullable()
       table.boolean('active').notNullable().defaultTo(true)
       table.boolean('health_welfare').notNullable().defaultTo(false)
       table.boolean('pvd').notNullable().defaultTo(false)

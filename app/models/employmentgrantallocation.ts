@@ -1,27 +1,27 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 
-export default class Departement extends BaseModel {
+export default class Employmentgrantallocation extends BaseModel {
   @column({ isPrimary: true })
   declare identifiant: number
 
   @column()
-  declare nom: string
+  declare employment_id: number
 
   @column()
-  declare position: string
+  declare grant_items_id: number
 
   @column()
-  declare description: string
+  declare level_of_effort: Float16Array
+
+  @column.dateTime()
+  declare active: DateTime
+
+  @column.dateTime()
+  declare start_date: DateTime
 
   @column()
-  declare cree_par: string
-
-  @column()
-  declare signaler_a: string
-
-  @column()
-  declare mis_a_jour_par: string
+  declare end_date: string
 
   @column.dateTime({ autoCreate: true })
   declare cree_a: DateTime
