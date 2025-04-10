@@ -23,6 +23,9 @@ import InterviewController from '#controllers/interview_controller'
 import LetterTemplateController from '#controllers/employmentgrantallocation_controller'
 import LookupController from '#controllers/lettertemplate_controller'
 import WorkLocationController from '#controllers/worklocation_controller'
+import EnfantEmployesController from '#controllers/enfant_employes_controller'
+import FormationsController from '#controllers/formations_controller'
+import FormationEmployesController from '#controllers/formation_employes_controller'
 
 const usersController = new UsersController()
 const employeeController = new EmployeeController()
@@ -38,6 +41,9 @@ const interviewController = new InterviewController()
 const letterTemplateController = new LetterTemplateController()
 const lookupController = new LookupController()
 const workLocationController = new WorkLocationController()
+const enfantEmployesController = new EnfantEmployesController()
+const formationsController = new FormationsController()
+const formationEmployesController = new FormationEmployesController()
 
 router.get('/', async () => {
   return {
@@ -56,6 +62,7 @@ router.group(() => {
 
 // Toutes les routes API avec préfixe /api
 router
+
   .group(() => {
     //User
     router.group(() => {
@@ -200,7 +207,54 @@ router
         employmentTypeController.destroy.bind(employmentTypeController)
       )
     })
-
+    //formation
+    router.group(() => {
+      router.get('/formation', formationsController.list.bind(formationsController))
+      router.get('/formation/:id', formationsController.show.bind(formationsController))
+      router.post('/formation', formationsController.store.bind(formationsController))
+      router.put('/formation/:id', formationsController.update.bind(formationsController))
+      router.delete('/formation/:id', formationsController.destroy.bind(formationsController))
+    })
+    //formationemployes
+    router.group(() => {
+      router.get(
+        '/formationemployes',
+        formationEmployesController.list.bind(formationEmployesController)
+      )
+      router.get(
+        '/formationemployes/:id',
+        formationEmployesController.show.bind(formationEmployesController)
+      )
+      router.post(
+        '/formationemployes',
+        formationEmployesController.store.bind(formationEmployesController)
+      )
+      router.put(
+        '/formationemployes/:id',
+        formationEmployesController.update.bind(formationEmployesController)
+      )
+      router.delete(
+        '/formationemployes/:id',
+        formationEmployesController.destroy.bind(formationEmployesController)
+      )
+    })
+    //enfantemployes
+    router.group(() => {
+      router.get('/enfantemployes', enfantEmployesController.list.bind(enfantEmployesController))
+      router.get(
+        '/enfantemployes/:id',
+        enfantEmployesController.show.bind(enfantEmployesController)
+      )
+      router.post('/enfantemployes', enfantEmployesController.store.bind(enfantEmployesController))
+      router.put(
+        '/enfantemployes/:id',
+        enfantEmployesController.update.bind(enfantEmployesController)
+      )
+      router.delete(
+        '/enfantemployes/:id',
+        enfantEmployesController.destroy.bind(enfantEmployesController)
+      )
+    })
     //employmentHistories
     router.group(() => {
       router.get(
