@@ -1,28 +1,28 @@
 import { DateTime } from 'luxon'
 import { BaseModel, column } from '@adonisjs/lucid/orm'
 
-export default class EnfantEmploye extends BaseModel {
+export default class LeaveBalance extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
   @column()
-  declare identifiant_employe: number
+  declare employeeId: number
 
   @column()
-  declare nom: string
-
-  @column.date()
-  declare date_de_naissance: DateTime
+  declare leave_type_id: number
 
   @column()
-  declare cree_par: string
+  declare reamaining_days: number
 
   @column()
-  declare mis_a_jour_par: string
+  declare created_by: number
+
+  @column()
+  declare updated_by: number
 
   @column.dateTime({ autoCreate: true })
-  declare created_at: DateTime
+  declare createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updated_at: DateTime
+  declare updatedAt: DateTime
 }

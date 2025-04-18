@@ -143,7 +143,7 @@ router
     router.group(() => {
       router.get('/grantitems', grantItem.list.bind(grantItem))
       router.get('/grantitems/:id', grantItem.show.bind(grantItem))
-      router.post('/grrantitems', grantItem.store.bind(grantItem))
+      router.post('/grantitems', grantItem.store.bind(grantItem))
       router.put('/grantitems/:id', grantItem.update.bind(grantItem))
       router.delete('/grantitems/:id', grantItem.destroy.bind(grantItem))
     })
