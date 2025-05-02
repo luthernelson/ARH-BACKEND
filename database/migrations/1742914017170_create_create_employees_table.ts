@@ -15,6 +15,13 @@ export default class Employees extends BaseSchema {
         .references('id')
         .inTable('users')
         .onDelete('SET NULL')
+      table
+        .integer('departement_id')
+        .unsigned()
+        .nullable()
+        .references('id')
+        .inTable('departements')
+        .onDelete('SET NULL')
       table.string('first_name').notNullable()
       table.string('middle_name').nullable()
       table.string('last_name').notNullable()

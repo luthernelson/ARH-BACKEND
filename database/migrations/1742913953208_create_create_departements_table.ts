@@ -5,7 +5,7 @@ export default class Departements extends BaseSchema {
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
-      table.increments('identifiant')
+      table.increments('id')
       table.string('nom').notNullable()
       table.string('position').notNullable()
       table.string('description').notNullable()

@@ -26,6 +26,7 @@ import WorkLocationController from '#controllers/worklocation_controller'
 import EnfantEmployesController from '#controllers/enfant_employes_controller'
 import FormationsController from '#controllers/formations_controller'
 import FormationEmployesController from '#controllers/formation_employes_controller'
+import PayrollController from '#controllers/payroll_controller'
 
 const usersController = new UsersController()
 const employeeController = new EmployeeController()
@@ -44,6 +45,7 @@ const workLocationController = new WorkLocationController()
 const enfantEmployesController = new EnfantEmployesController()
 const formationsController = new FormationsController()
 const formationEmployesController = new FormationEmployesController()
+const payrollController = new PayrollController()
 
 router.get('/', async () => {
   return {
@@ -73,6 +75,15 @@ router
       router.delete('/users/:id', usersController.destroy.bind(usersController))
     })
 
+    //payrollController
+    router.group(() => {
+      router.get('/payroll', payrollController.list.bind(payrollController))
+      router.get('/payroll/:id', payrollController.show.bind(payrollController))
+      router.post('/payroll', payrollController.store.bind(payrollController))
+      router.put('/payroll/:id', payrollController.update.bind(payrollController))
+      router.delete('/payroll/:id', payrollController.destroy.bind(payrollController))
+    })
+
     //employee ok
     router.group(() => {
       router.get('/employee', employeeController.list.bind(employeeController))
@@ -84,11 +95,11 @@ router
 
     //departement
     router.group(() => {
-      router.get('/departemnt', departementController.list.bind(departementController))
-      router.get('/departemnt/:id', departementController.show.bind(departementController))
-      router.post('/departemnt', departementController.store.bind(departementController))
-      router.put('/departemnt/:id', departementController.update.bind(departementController))
-      router.delete('/departemnt/:id', departementController.destroy.bind(departementController))
+      router.get('/departement', departementController.list.bind(departementController))
+      router.get('/departement/:id', departementController.show.bind(departementController))
+      router.post('/departement', departementController.store.bind(departementController))
+      router.put('/departement/:id', departementController.update.bind(departementController))
+      router.delete('/departement/:id', departementController.destroy.bind(departementController))
     })
 
     //candidat

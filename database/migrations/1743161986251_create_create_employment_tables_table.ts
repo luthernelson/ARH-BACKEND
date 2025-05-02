@@ -34,7 +34,7 @@ export default class Employments extends BaseSchema {
         .integer('department_id')
         .unsigned()
         .notNullable()
-        .references('identifiant')
+        .references('id')
         .inTable('departements')
         .onDelete('CASCADE')
       table

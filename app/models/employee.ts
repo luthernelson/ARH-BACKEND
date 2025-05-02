@@ -11,6 +11,9 @@ export default class Employee extends BaseModel {
   declare staff_id: string
 
   @column()
+  declare departement_id: number
+
+  @column()
   declare subsidiary: 'SMRU' | 'BHF'
 
   @column()
