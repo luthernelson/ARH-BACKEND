@@ -1,16 +1,22 @@
 import { BaseSchema } from '@adonisjs/lucid/schema'
 
-export default class Trainings extends BaseSchema {
-  protected tableName = 'trainings'
+export default class extends BaseSchema {
+  protected tableName = 'trainers'
 
   async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
 
-      table.string('title').notNullable()
-      table.string('organizer').notNullable()
-      table.date('start_date').notNullable()
-      table.date('end_date').notNullable()
+      table.string('first_name').notNullable()
+      table.string('last_name').notNullable()
+      table.string('role').nullable()
+      table.string('email').notNullable().unique()
+      table.string('profile_picture').nullable()
+
+      // description devrait être un texte, pas DateTime
+      table.text('description').nullable()
+
+      table.boolean('status').defaultTo(true)
 
       table.string('created_by').nullable()
       table.string('updated_by').nullable()

@@ -27,6 +27,8 @@ import EnfantEmployesController from '#controllers/enfant_employes_controller'
 import FormationsController from '#controllers/formations_controller'
 import FormationEmployesController from '#controllers/formation_employes_controller'
 import PayrollController from '#controllers/payroll_controller'
+import TrainerController from '#controllers/trainers_controller'
+import TrainerTypeController from '#controllers/trainer_type_controller'
 
 const usersController = new UsersController()
 const employeeController = new EmployeeController()
@@ -46,6 +48,8 @@ const enfantEmployesController = new EnfantEmployesController()
 const formationsController = new FormationsController()
 const formationEmployesController = new FormationEmployesController()
 const payrollController = new PayrollController()
+const trainerController = new TrainerController()
+const trainertypeController = new TrainerTypeController()
 
 router.get('/', async () => {
   return {
@@ -166,6 +170,24 @@ router
       router.post('/grant', grantController.store.bind(grantController))
       router.put('/grant/:id', grantController.update.bind(grantController))
       router.delete('/grant/:id', grantController.destroy.bind(grantController))
+    })
+
+    //trainer
+    router.group(() => {
+      router.get('/trainer', trainerController.list.bind(trainerController))
+      router.get('/trainer/:id', trainerController.show.bind(trainerController))
+      router.post('/trainer', trainerController.store.bind(trainerController))
+      router.put('/trainer/:id', trainerController.update.bind(trainerController))
+      router.delete('/trainer/:id', trainerController.destroy.bind(trainerController))
+    })
+
+    //trainer-type
+    router.group(() => {
+      router.get('/trainertype', trainertypeController.list.bind(trainertypeController))
+      router.get('/trainertype/:id', trainertypeController.show.bind(trainertypeController))
+      router.post('/trainertype', trainertypeController.store.bind(trainertypeController))
+      router.put('/trainertype/:id', trainertypeController.update.bind(trainertypeController))
+      router.delete('/trainertype/:id', trainertypeController.destroy.bind(trainertypeController))
     })
 
     //employmentallocation
