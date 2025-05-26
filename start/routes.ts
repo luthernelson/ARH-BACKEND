@@ -24,11 +24,11 @@ import LetterTemplateController from '#controllers/employmentgrantallocation_con
 import LookupController from '#controllers/lettertemplate_controller'
 import WorkLocationController from '#controllers/worklocation_controller'
 import EnfantEmployesController from '#controllers/enfant_employes_controller'
-import FormationsController from '#controllers/formations_controller'
 import FormationEmployesController from '#controllers/formation_employes_controller'
 import PayrollController from '#controllers/payroll_controller'
 import TrainerController from '#controllers/trainers_controller'
 import TrainerTypeController from '#controllers/trainer_type_controller'
+import TrainingController from '#controllers/training_controllers'
 
 const usersController = new UsersController()
 const employeeController = new EmployeeController()
@@ -45,11 +45,11 @@ const letterTemplateController = new LetterTemplateController()
 const lookupController = new LookupController()
 const workLocationController = new WorkLocationController()
 const enfantEmployesController = new EnfantEmployesController()
-const formationsController = new FormationsController()
 const formationEmployesController = new FormationEmployesController()
 const payrollController = new PayrollController()
 const trainerController = new TrainerController()
 const trainertypeController = new TrainerTypeController()
+const trainingController = new TrainingController()
 
 router.get('/', async () => {
   return {
@@ -214,6 +214,15 @@ router
       )
     })
 
+    //training
+    router.group(() => {
+      router.get('/training', trainingController.list.bind(trainingController))
+      router.get('/training/:id', trainingController.show.bind(trainingController))
+      router.post('/training', trainingController.store.bind(trainingController))
+      router.put('/training/:id', trainingController.update.bind(trainingController))
+      router.delete('/training/:id', trainingController.destroy.bind(trainingController))
+    })
+
     //employment
     router.group(() => {
       router.get('/employment', employmentController.list.bind(employmentController))
@@ -239,14 +248,6 @@ router
         '/employmentTypes/:id',
         employmentTypeController.destroy.bind(employmentTypeController)
       )
-    })
-    //formation
-    router.group(() => {
-      router.get('/formation', formationsController.list.bind(formationsController))
-      router.get('/formation/:id', formationsController.show.bind(formationsController))
-      router.post('/formation', formationsController.store.bind(formationsController))
-      router.put('/formation/:id', formationsController.update.bind(formationsController))
-      router.delete('/formation/:id', formationsController.destroy.bind(formationsController))
     })
     //formationemployes
     router.group(() => {

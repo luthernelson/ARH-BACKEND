@@ -9,14 +9,15 @@ export default class Grants extends BaseSchema {
       table.string('name').notNullable()
       table.string('code').notNullable().unique()
       table.text('description').nullable()
-      table.string('end_date').nullable()
+      table.boolean('status').nullable().defaultTo(false)
+      table.dateTime('start_date').nullable()
+      table.dateTime('end_date').nullable()
       table.string('created_by').nullable()
       table.string('updated_by').nullable()
       table.timestamp('created_at', { useTz: true }).defaultTo(this.now())
       table.timestamp('updated_at', { useTz: true }).defaultTo(this.now())
     })
   }
-
   public async down() {
     this.schema.dropTable(this.tableName)
   }

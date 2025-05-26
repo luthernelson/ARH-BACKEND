@@ -36,9 +36,6 @@ export class GrantItem extends BaseModel {
   declare grant_benefit_fte: number | null
 
   @column()
-  declare position_id: number | null
-
-  @column()
   declare grant_total_amount: number | null
 
   @column()

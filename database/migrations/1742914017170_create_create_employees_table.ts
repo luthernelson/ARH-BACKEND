@@ -7,7 +7,7 @@ export default class Employees extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('id')
       table.string('staff_id').notNullable().unique()
-      table.enum('subsidiary', ['SMRU', 'BHF']).notNullable()
+      table.string('subsidiary').notNullable()
       table
         .integer('user_id')
         .unsigned()
@@ -29,9 +29,12 @@ export default class Employees extends BaseSchema {
       table.string('profile_picture').nullable()
       table.string('gender').notNullable()
       table.dateTime('date_of_birth').notNullable()
-      table.enum('status', ['Expats', 'Local ID', 'Local non ID']).notNullable()
+      table.string('status').notNullable()
       table.string('religion').nullable()
       table.string('birth_place').nullable()
+      table.datetime('date_of_commencement_service').nullable()
+      table.integer('basic_salary').notNullable()
+      table.boolean('status_employee').notNullable().defaultTo(false)
       table.string('identification_number').nullable()
       table.string('social_security_number').nullable()
       table.string('tax_number').nullable()

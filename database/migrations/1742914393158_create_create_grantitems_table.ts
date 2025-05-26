@@ -16,7 +16,6 @@ export default class GrantItems extends BaseSchema {
       table.integer('grant_cost_by_monthly').nullable()
       table.integer('grant_total_cost_by_person').nullable()
       table.integer('grant_benefit_fte').nullable()
-      table.integer('position_id').nullable()
       table.integer('grant_total_amount').nullable()
       table.string('created_by').nullable()
       table.string('updated_by').nullable()

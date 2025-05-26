@@ -16,8 +16,14 @@ export class Grant extends BaseModel {
   @column()
   declare description: string | null
 
+  @column.dateTime()
+  declare start_date: DateTime | null
+
+  @column.dateTime()
+  declare end_date: DateTime | null
+
   @column()
-  declare end_date: string | null
+  declare status: boolean
 
   @column()
   declare created_by: string | null

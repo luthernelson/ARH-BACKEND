@@ -6,7 +6,14 @@ export default class Candidats extends BaseSchema {
   public async up() {
     this.schema.createTable(this.tableName, (table) => {
       table.increments('identifiant') // Clé primaire auto-incrémentée
-      table.string('nom_du_candidat').notNullable() // Nom obligatoire
+      table.string('firstName').notNullable() // Nom obligatoire
+      table.string('lastName').notNullable()
+      table.string('email').notNullable()
+      table.string('placeBirtday').notNullable()
+      table.string('jobPosition').notNullable()
+      table.string('status').notNullable()
+      table.date('birthday').notNullable()
+      table.date('applicationDate').notNullable()
       table.string('telephone').notNullable().unique() // Téléphone unique pour éviter les doublons
       table.string('cv').nullable() // Lien du CV stocké sous forme de texte (URL)
       table.timestamp('cree_a', { useTz: true }).defaultTo(this.now()) // Date de création
