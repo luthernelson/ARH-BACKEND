@@ -9,7 +9,7 @@ export default class LeaveType extends BaseModel {
   declare name: string
 
   @column()
-  declare defaul_duration: Float16Array
+  declare defaul_duration: number
 
   @column()
   declare description: string

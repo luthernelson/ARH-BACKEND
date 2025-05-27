@@ -1,4 +1,4 @@
-import Employmentgrantallocation from '#models/EmploymentGrantAllocation'
+import Employmentgrantallocation from '#models/employmentgrantallocation'
 import CrudService from '#services/crud_service'
 import CrudController from './crud_controller.js'
 

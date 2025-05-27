@@ -1,4 +1,4 @@
-import WorkLocation from '#models/WorkLocation'
+import WorkLocation from '#models/worklocation'
 import CrudService from '#services/crud_service'
 import CrudController from './crud_controller.js'
 

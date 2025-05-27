@@ -12,7 +12,7 @@ export default class Employmentgrantallocation extends BaseModel {
   declare grant_items_id: number
 
   @column()
-  declare level_of_effort: Float16Array
+  declare level_of_effort: number
 
   @column.dateTime()
   declare active: DateTime
