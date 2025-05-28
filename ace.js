@@ -19,7 +19,7 @@
 /**
  * Register hook to process TypeScript files using ts-node
  */
-import 'ts-node-maintained/register/esm'
+import { register } from 'ts-node'  // Au lieu de 'ts-node-maintained'
 
 /**
  * Import ace console entrypoint
