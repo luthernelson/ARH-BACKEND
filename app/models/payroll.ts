@@ -5,100 +5,99 @@ export default class Payroll extends BaseModel {
   @column({ isPrimary: true })
   declare id: number
 
-  // 🔹 Références
+  // === Champs correspondant exactement à formData ===
+
+  // Références
   @column()
-  declare departmentId: number
+  declare department_id: number
 
   @column()
-  declare employeeId: number
+  declare employee_id: number
 
-  // 📆 Dates
+  // Dates
   @column.date()
-  declare payPeriodDate: DateTime
-
-  @column.date()
-  declare payslipDate: DateTime | null
-
-  // 💰 Rémunération de base
-  @column()
-  declare basicSalary: number
+  declare pay_period_date: DateTime
 
   @column()
-  declare salaryByFTE: number // Ajusté selon le temps de travail effectif
+  declare years_of_service: number
+
+  // Salaire et primes
+  @column()
+  declare basic_salary: number
 
   @column()
-  declare compensationRefund: number // Remboursement indemnitaire ou autre
+  declare seniority_bonus: number
 
-  // 🎁 Avantages
+  // Heures supplémentaires
   @column()
-  declare transportAllowance: number
-
-  @column()
-  declare housingAllowance: number
+  declare overtime_hours: number
 
   @column()
-  declare thirteenMonthSalary: number
-
-  // 🕐 Heures supplémentaires
-  @column()
-  declare overtimeHours: number
-
-  // 💸 Déductions salariales (à la charge du salarié)
-  @column()
-  declare employeeSocialSecurity: number
+  declare overtime_rate: number
 
   @column()
-  declare employeeHealthWelfare: number
+  declare overtime_pay: number
+
+  // Avantages
+  @column()
+  declare transport_allowance: number
+
+  @column()
+  declare housing_allowance: number
+
+  @column()
+  declare thirteenth_month_salary: number
+
+  // Déductions
+  @column()
+  declare employee_social_security: number
+
+  @column()
+  declare employee_health_welfare: number
 
   @column()
   declare tax: number
 
+  // Cotisations employeur
   @column()
-  declare pvd: number // Prévoyance vieillesse/décès ou autre déduction
+  declare employer_social_security: number
 
   @column()
-  declare savingFund: number // Épargne salariale
+  declare employer_health_welfare: number
 
-  // 🏦 Cotisations patronales
+  // Totaux
   @column()
-  declare employerSocialSecurity: number
-
-  @column()
-  declare employerHealthWelfare: number
-
-  // 🧮 Totaux calculés
-  @column()
-  declare grandTotalIncome: number // Total brut
+  declare gross_salary: number
 
   @column()
-  declare grandTotalDeduction: number // Total des déductions
+  declare total_deductions: number
 
   @column()
-  declare netPaid: number // Salaire net à payer
+  declare net_salary: number
 
   @column()
-  declare employerContributionTotal: number // Total des charges patronales
+  declare employer_contribution_total: number
 
   @column()
-  declare twoSides: number // Coût total pour l’entreprise = net + charges patronales
+  declare total_cost: number
 
-  // 📑 Informations de la fiche de paie
+  // Info bulletin de paie
+  @column.date()
+  declare payslip_date: DateTime | null
+
   @column()
-  declare payslipNumber: string | null
+  declare payslip_number: string | null
 
   @column()
-  declare staffSignature: string | null
+  declare staff_signature: string | null
 
-  // 📊 Suivi des actions
+  // === Champs supplémentaires (gestion interne) ===
   @column.dateTime({ autoCreate: true })
-  declare createdAt: DateTime | null
+  declare created_at: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
-  declare updatedAt: DateTime | null
+  declare updated_at: DateTime
 
-  @column()
-  declare createdBy: string | null
-
-  @column()
-  declare updatedBy: string | null
+  // Note: Le champ 'hire_date' de formData n'est pas inclus car il semble être
+  // utilisé uniquement pour le calcul et non stocké dans la payroll
 }

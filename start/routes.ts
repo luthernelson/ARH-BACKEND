@@ -29,6 +29,7 @@ import PayrollController from '#controllers/payroll_controller'
 import TrainerController from '#controllers/trainers_controller'
 import TrainerTypeController from '#controllers/trainer_type_controller'
 import TrainingController from '#controllers/training_controllers'
+import JobController from '#controllers/jobs_controller'
 
 const usersController = new UsersController()
 const employeeController = new EmployeeController()
@@ -50,6 +51,7 @@ const payrollController = new PayrollController()
 const trainerController = new TrainerController()
 const trainertypeController = new TrainerTypeController()
 const trainingController = new TrainingController()
+const jobController = new JobController()
 
 router.get('/', async () => {
   return {
@@ -95,6 +97,15 @@ router
       router.post('/employee', employeeController.store.bind(employeeController))
       router.put('/employee/:id', employeeController.update.bind(employeeController))
       router.delete('/employee/:id', employeeController.destroy.bind(employeeController))
+    })
+
+    //jobController ok
+    router.group(() => {
+      router.get('/job', jobController.list.bind(jobController))
+      router.get('/job/:id', jobController.show.bind(jobController))
+      router.post('/job', jobController.store.bind(jobController))
+      router.put('/job/:id', jobController.update.bind(jobController))
+      router.delete('/job/:id', jobController.destroy.bind(jobController))
     })
 
     //departement
