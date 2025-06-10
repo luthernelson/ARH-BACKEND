@@ -25,6 +25,7 @@ export default class Employees extends BaseSchema {
       table.string('first_name').notNullable()
       table.string('middle_name').nullable()
       table.string('last_name').notNullable()
+      table.string('job_position').nullable()
       table.string('email').nullable().unique()
       table.string('profile_picture').nullable()
       table.string('gender').notNullable()

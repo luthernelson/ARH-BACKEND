@@ -17,6 +17,9 @@ export default class Employee extends BaseModel {
   declare subsidiary: string
 
   @column()
+  declare job_position: string
+
+  @column()
   declare user_id: number | null
 
   @column()

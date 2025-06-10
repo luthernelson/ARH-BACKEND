@@ -30,8 +30,10 @@ import TrainerController from '#controllers/trainers_controller'
 import TrainerTypeController from '#controllers/trainer_type_controller'
 import TrainingController from '#controllers/training_controllers'
 import JobController from '#controllers/jobs_controller'
+import ReferenceController from '#controllers/reference_controller'
 
 const usersController = new UsersController()
+const referenceController = new ReferenceController()
 const employeeController = new EmployeeController()
 const departementController = new DepartementController()
 const candidatController = new CandidatController()
@@ -117,6 +119,14 @@ router
       router.delete('/departement/:id', departementController.destroy.bind(departementController))
     })
 
+    //reference
+    router.group(() => {
+      router.get('/reference', referenceController.list.bind(referenceController))
+      router.get('/reference/:id', referenceController.show.bind(referenceController))
+      router.post('/reference', referenceController.store.bind(referenceController))
+      router.put('/reference/:id', referenceController.update.bind(referenceController))
+      router.delete('/reference/:id', referenceController.destroy.bind(referenceController))
+    })
     //candidat
     router.group(() => {
       router.get('/candidat', candidatController.list.bind(candidatController))

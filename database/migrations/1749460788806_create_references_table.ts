@@ -12,7 +12,6 @@ export default class extends BaseSchema {
       table.string('phone_entreprise').nullable()
       table.string('name').notNullable()
       table.string('job_title').notNullable()
-      table.string('candidate_id').notNullable()
       table.string('status').notNullable()
       table
         .integer('candidate_id')
