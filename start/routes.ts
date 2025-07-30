@@ -31,7 +31,10 @@ import TrainerTypeController from '#controllers/trainer_type_controller'
 import TrainingController from '#controllers/training_controllers'
 import JobController from '#controllers/jobs_controller'
 import ReferenceController from '#controllers/reference_controller'
+import AuthController from '#controllers/http/auth_controller'
+import { middleware } from '#start/kernel'
 
+const authController = new AuthController()
 const usersController = new UsersController()
 const referenceController = new ReferenceController()
 const employeeController = new EmployeeController()
@@ -64,10 +67,13 @@ router.get('/', async () => {
 // Routes d'authentification
 router.group(() => {
   // Connexion
-  router.post('/login', async ({ request, response }) => {
-    const { default: AuthController } = await import('#controllers/http/auth_controller')
-    return new AuthController().login({ request, response } as HttpContext)
-  })
+  router.post('/login', authController.login.bind(authController))
+
+  // Déconnexion
+  router.post('/logout', authController.logout.bind(authController))
+
+  // Création de compte
+  router.post('/register', authController.register.bind(authController))
 })
 
 // Toutes les routes API avec préfixe /api
@@ -334,5 +340,5 @@ router
       )
     })
   })
-  //.middleware('auth') // Protège toutes les routes
-  .prefix('/api')
+  //.prefix('/api')
+  .use(middleware.auth())

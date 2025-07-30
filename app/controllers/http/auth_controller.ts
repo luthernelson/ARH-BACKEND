@@ -4,12 +4,30 @@ import type { HttpContext } from '@adonisjs/core/http'
 import { cuid } from '@adonisjs/core/helpers'
 
 export default class AuthController {
+  // Fonction auxiliaire pour envoyer des réponses d'erreur
+  private responseError(message: string, statusCode: number, errors?: any) {
+    return {
+      status: 'error',
+      message,
+      errors,
+      statusCode,
+    }
+  }
+
+  // Fonction auxiliaire pour envoyer des réponses de succès
+  private response(message: string, data?: any) {
+    return {
+      status: 'success',
+      message,
+      data,
+    }
+  }
   // Inscription
   public async register({ request, response }: HttpContext) {
-    const { email, password, fullName, status, roles, permissions } = request.only([
+    const { email, password, fullname, status, roles, permissions } = request.only([
       'email',
       'password',
-      'fullName',
+      'fullname',
       'status',
       'roles',
       'permissions',
@@ -17,8 +35,8 @@ export default class AuthController {
 
     const user = await User.create({
       email,
-      password: await hash.make(password),
-      fullName,
+      password,
+      fullname,
       status,
       roles,
       permissions,
@@ -27,30 +45,37 @@ export default class AuthController {
     return response.created({ message: 'Utilisateur créé avec succès', user })
   }
 
-  public async login({ request, response }: HttpContext) {
-    const { email, password, identity } = request.only(['email', 'password', 'identity'])
+  public async login({ request }: HttpContext) {
+    const { email, password } = request.only(['email', 'password'])
+
+    // DEBUG: Afficher le mot de passe reçu (en clair)
+    console.log('Mot de passe reçu (clair):', password)
 
     try {
-      // check user
       const user = await User.findBy('email', email)
       if (!user) {
-        return response.status(401).json({ error: 'email invalide' })
+        console.log('Aucun utilisateur trouvé avec cet email')
+        return this.responseError('Invalid credentials', 401)
       }
 
-      // check password
-      const login = await hash.verify(user.password, password)
-      console.log('Provided Password:', password)
-      console.log('Stored Hash:', user.password)
-      if (!login) {
-        return response.status(401).json({ error: 'password invalid' })
+      // DEBUG: Afficher le hash stocké
+      console.log('Hash stocké dans la BDD:', user.password)
+
+      const isPasswordValid = await hash.verify(user.password, password)
+      console.log('Résultat de la vérification:', isPasswordValid)
+
+      if (!isPasswordValid) {
+        return this.responseError('Invalid credentials', 401)
       }
-      // create token
+
       const token = await User.accessTokens.create(user, ['*'], {
-        name: identity ?? process.env.TOKEN_IDENTITY ?? cuid(),
+        name: email ?? cuid(),
+        expiresIn: '2 hours', // Durée de validité du token
       })
-      return response.status(200).json({ message: 'Login successfully', user, user_token: token })
+      return this.response('Login successfully', { user, user_token: token })
     } catch (error: any) {
-      return response.status(400).json({ error: 'Invalid credentials' })
+      console.error('Erreur technique:', error.message)
+      return this.responseError('Invalid credentials', 400)
     }
   }
 
