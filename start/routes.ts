@@ -33,6 +33,7 @@ import JobController from '#controllers/jobs_controller'
 import ReferenceController from '#controllers/reference_controller'
 import AuthController from '#controllers/http/auth_controller'
 import { middleware } from '#start/kernel'
+import ManagerDashboardController from '#controllers/manager_dashoard_controllers'
 
 const authController = new AuthController()
 const usersController = new UsersController()
@@ -57,6 +58,7 @@ const trainerController = new TrainerController()
 const trainertypeController = new TrainerTypeController()
 const trainingController = new TrainingController()
 const jobController = new JobController()
+const managerDashboardController = new ManagerDashboardController()
 
 router.get('/', async () => {
   return {
@@ -339,6 +341,26 @@ router
         employmentHistoryController.destroy.bind(employmentHistoryController)
       )
     })
+
+    //ManagerDashboard
+    router.group(() => {
+      router.get(
+        '/dashboardManager',
+        managerDashboardController.index.bind(managerDashboardController)
+      )
+      router.get(
+        '/dash-employee',
+        managerDashboardController.index2.bind(managerDashboardController)
+      )
+      router.get(
+        '/dash-candidat',
+        managerDashboardController.index3.bind(managerDashboardController)
+      )
+      router.get(
+        '/dash-departementEmployee',
+        managerDashboardController.employesParDepartement.bind(managerDashboardController)
+      )
+    })
   })
-  //.prefix('/api')
   .use(middleware.auth())
+  .prefix('/api')
