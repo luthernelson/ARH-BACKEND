@@ -11,7 +11,13 @@ export default class Employee extends BaseModel {
   declare staff_id: string
 
   @column()
-  declare subsidiary: 'SMRU' | 'BHF'
+  declare departement_id: number
+
+  @column()
+  declare subsidiary: string
+
+  @column()
+  declare job_position: string
 
   @column()
   declare user_id: number | null
@@ -38,13 +44,22 @@ export default class Employee extends BaseModel {
   declare date_of_birth: DateTime
 
   @column()
-  declare status: 'Expats' | 'Local ID' | 'Local non ID'
+  declare status: string
+
+  @column()
+  declare status_employee: boolean
+
+  @column()
+  declare basic_salary: number
 
   @column()
   declare religion: string | null
 
   @column()
   declare birth_place: string | null
+
+  @column.dateTime()
+  declare date_of_commencement_service: DateTime | null
 
   @column()
   declare identification_number: string | null

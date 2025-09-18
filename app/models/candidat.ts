@@ -3,16 +3,37 @@ import { BaseModel, column } from '@adonisjs/lucid/orm'
 
 export default class Candidat extends BaseModel {
   @column({ isPrimary: true })
-  declare identifiant: number
+  declare id: number
 
   @column()
-  declare nom_du_candidat: string
+  declare first_name: string
 
   @column()
-  declare telephone: string
+  declare last_name: string
+
+  @column()
+  declare email: string
+
+  @column()
+  declare place_birtday: string
+
+  @column()
+  declare job_position: string
+
+  @column()
+  declare telephone: number
+
+  @column()
+  declare status: string
 
   @column()
   declare cv: string
+
+  @column.dateTime({ autoCreate: true })
+  declare birthday: DateTime
+
+  @column.dateTime({ autoCreate: true })
+  declare application_date: DateTime
 
   @column.dateTime({ autoCreate: true })
   declare cree_a: DateTime

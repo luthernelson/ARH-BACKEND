@@ -21,22 +21,19 @@ export class GrantItem extends BaseModel {
   declare grant_benefit: number | null
 
   @column()
-  declare grant_level_of_effort: string | null
+  declare grant_level_of_effort: number | null
 
   @column()
-  declare grant_position_number: string | null
+  declare grant_position_number: number | null
 
   @column()
-  declare grant_cost_by_monthly: string | null
+  declare grant_cost_by_monthly: number | null
 
   @column()
-  declare grant_total_cost_by_person: string | null
+  declare grant_total_cost_by_person: number | null
 
   @column()
   declare grant_benefit_fte: number | null
-
-  @column()
-  declare position_id: string | null
 
   @column()
   declare grant_total_amount: number | null

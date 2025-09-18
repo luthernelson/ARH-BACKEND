@@ -3,16 +3,22 @@ import { BaseModel, column } from '@adonisjs/lucid/orm'
 
 export default class Departement extends BaseModel {
   @column({ isPrimary: true })
-  declare identifiant: number
+  declare id: number
 
   @column()
   declare nom: string
+
+  @column()
+  declare position: string
 
   @column()
   declare description: string
 
   @column()
   declare cree_par: string
+
+  @column()
+  declare signaler_a: string
 
   @column()
   declare mis_a_jour_par: string

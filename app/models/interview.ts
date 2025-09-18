@@ -6,16 +6,22 @@ export class Interview extends BaseModel {
   declare id: number
 
   @column()
-  declare candidate_id: number | null
+  declare candidate_name: string
 
   @column()
-  declare grant_position_id: number | null
+  declare phone: string | null
+
+  @column()
+  declare resume: string | null
+
+  @column()
+  declare job_position: string
 
   @column()
   declare interviewer_name: string | null
 
-  @column()
-  declare interview_date: string | null
+  @column.dateTime()
+  declare interview_date: DateTime
 
   @column()
   declare start_time: string | null
@@ -34,6 +40,9 @@ export class Interview extends BaseModel {
 
   @column()
   declare feedback: string | null
+
+  @column()
+  declare reference_info: string | null
 
   @column()
   declare created_by: string | null
